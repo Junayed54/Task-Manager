@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Task Detail</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>{{ task.title }}</h3>
+      <p>Description: {{ task.description }}</p>
+      <p>Priority: {{ task.priority }}</p>
+      <p>Completed: {% if task.completed %}Yes{% else %}No{% endif %}</p>
+      <p>Created At: {{ task.created_at }}</p>
+      <p>Updated At: {{ task.updated_at }}</p>
+    </div>
+    <div class="col-md-6">
+      {% if task.image %}
+        <img src="{{ task.image.url }}" alt="{{ task.title }}" width="300">
+      {% endif %}
+    </div>
+  </div>
+  <a href="{% url 'task_update' task.pk %}" class="btn btn-primary">Edit Task</a>
+
+  <a href="{% url 'task_list' %}" class="btn btn-secondary">Back to Task List</a>
+{% endblock %}
